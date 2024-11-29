@@ -24,7 +24,7 @@ const CreateUser = () => {
         <Form.Label>Username</Form.Label>
         <Form.Control
           type="username"
-          value={email}
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter username"
         />

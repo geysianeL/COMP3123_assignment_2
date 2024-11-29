@@ -7,12 +7,12 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db
+      - mongo-dev-data:/data/db
     networks:
       - backend-network
 
 volumes:
-  mongo-data:
+  mongo-dev-data:
 
 networks: 
   backend-network: 
