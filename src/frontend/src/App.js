@@ -10,12 +10,14 @@ const App = () => {
   return (
     <Router>
       <Navigation />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/create-user" element={<CreateUser />} />
-        <Route path="/list-employees" element={<ListEmployees />} />
-        <Route path="/register-employee" element={<RegisterEmployee />} />
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/create-user" element={<CreateUser />} />
+          <Route path="/list-employees" element={<ListEmployees />} />
+          <Route path="/register-employee" element={<RegisterEmployee />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
