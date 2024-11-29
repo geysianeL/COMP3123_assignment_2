@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import employeeService from '../services/employeeService';
 
 const ListEmployees = () => {
@@ -18,14 +19,18 @@ const ListEmployees = () => {
   }, []);
 
   return (
-    <div>
-      <h1>List of Employees</h1>
-      <ul>
-        {employees.map((employee) => (
-          <li key={employee.id}>{employee.name}</li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h1>List of Employees</h1>
+          <ListGroup>
+            {employees.map((employee) => (
+              <ListGroup.Item key={employee.id}>{employee.name}</ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
