@@ -4,6 +4,7 @@ import authService from '../services/authService';
 
 const CreateUser = () => {
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
@@ -19,6 +20,15 @@ const CreateUser = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Create User</h1>
+      <Form.Group controlId="formEmail">
+        <Form.Label>Username</Form.Label>
+        <Form.Control
+          type="username"
+          value={email}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter username"
+        />
+      </Form.Group>
       <Form.Group controlId="formEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control
