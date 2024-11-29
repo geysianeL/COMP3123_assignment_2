@@ -1,0 +1,15 @@
+// src/custom.scss
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+
+// Override Bootstrap variables with Material Design colors
+$primary: #e91e63; // Pink
+$secondary: #9c27b0; // Purple
+$success: #4caf50; // Green
+$info: #00bcd4; // Cyan
+$warning: #ff9800; // Orange
+$danger: #f44336; // Red
+$light: #f1f1f1; // Light Grey
+$dark: #212121; // Dark Grey
+
+@import 'bootstrap/scss/bootstrap';
