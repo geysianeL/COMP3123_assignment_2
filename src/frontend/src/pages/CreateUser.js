@@ -18,13 +18,13 @@ const CreateUser = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h1>Create User</h1>
+    <Form onSubmit={handleSubmit} className="text-dark">
+      <h2>Create User</h2>
       <Form.Group controlId="formEmail">
         <Form.Label>Username</Form.Label>
         <Form.Control
-          type="username"
           value={username}
+          name="username"
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter username"
         />
@@ -34,20 +34,22 @@ const CreateUser = () => {
         <Form.Control
           type="email"
           value={email}
+          name="email"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter email"
         />
       </Form.Group>
-      <Form.Group controlId="formPassword">
+      <Form.Group controlId="formPassword" className="mb-3">
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
           value={password}
+          name="password"
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter password"
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="outline-primary" type="submit">
         Create User
       </Button>
     </Form>

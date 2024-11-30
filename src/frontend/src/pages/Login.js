@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 import authService from '../services/authService';
+import tokenService from '../services/tokenService';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +12,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await authService.login(email, password);
-      console.log(data);
+      tokenService.setToken(data.token);
+      Navigate('/list-employees');
     } catch (error) {
       console.error(error);
     }

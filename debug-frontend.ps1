@@ -3,4 +3,4 @@ $composeFile = ".\src\docker-compose.yml"
 $overrideFile = ".\src\docker-compose.debug.frontend.yml"
 
 # Run the Docker Compose command
-docker-compose -f $composeFile -f $overrideFile up -d
+docker-compose -f $composeFile -f $overrideFile up --build -d

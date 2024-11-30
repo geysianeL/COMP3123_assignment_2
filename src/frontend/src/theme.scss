@@ -1,15 +1,29 @@
-// src/custom.scss
+@import './fonts.scss';
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 
-// Override Bootstrap variables with Material Design colors
-$primary: #e91e63; // Pink
-$secondary: #9c27b0; // Purple
-$success: #4caf50; // Green
-$info: #00bcd4; // Cyan
-$warning: #ff9800; // Orange
-$danger: #f44336; // Red
-$light: #f1f1f1; // Light Grey
-$dark: #212121; // Dark Grey
+$primary: #e91b60;
+$secondary: #d81be9;
+$success: #4caf50;
+$info: #1b60e9;
+$warning: #1b1b1b;
+$danger: #e91b2c;
+$light: #fbd9e4;
+$dark: #2f0513;
+
+$btn-primary-color: $white;
+$font-family-base: 'Roboto', sans-serif;
+$headings-font-family: 'Roboto', sans-serif;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
 
 @import 'bootstrap/scss/bootstrap';
