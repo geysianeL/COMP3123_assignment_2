@@ -25,4 +25,6 @@ router.post(
 
 router.get('/protected', authMidleware, userController.protected);
 
+router.get('/userinfo', authMidleware, userController.userInfo);
+
 module.exports = router;

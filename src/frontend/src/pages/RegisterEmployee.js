@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Navigate, useNavigate } from 'react-router-dom';
 import employeeService from '../services/employeeService';
 
 const RegisterEmployee = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [position, setPosition] = useState('');
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -15,7 +16,7 @@ const RegisterEmployee = () => {
         email,
         position,
       );
-      console.log(data);
+      navigate('/list-employees');
     } catch (error) {
       console.error(error);
     }
@@ -23,7 +24,7 @@ const RegisterEmployee = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h1>Register Employee</h1>
+      <h3>Register Employee</h3>
       <Form.Group controlId="formName">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -51,7 +52,7 @@ const RegisterEmployee = () => {
           placeholder="Enter position"
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="mt-3">
+      <Button variant="outline-primary" type="submit" className="mt-3">
         Register Employee
       </Button>
     </Form>

@@ -61,5 +61,17 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.userInfo = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ status: false, message: 'User not found' });
+    }
+    res.status(200).json({ status: true, user });
+  } catch (err) {
+    res.status(500).json({ status: false, message: err.message });
+  }
+};
+
 exports.protected = (req, res) =>
   res.json({ message: 'This is a protected route.', user: req.user });
