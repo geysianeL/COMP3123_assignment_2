@@ -7,9 +7,22 @@
     {
       "type": "msedge",
       "request": "launch",
-      "name": "Debug Front-end",
+      "name": "Debug Frontend",
       "url": "http://localhost:3001",
       "webRoot": "${workspaceFolder}/src/frontend"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Backend",
+      "runtimeExecutable": "${workspaceFolder}/src/backend/node_modules/.bin/nodemon",
+      "program": "${workspaceFolder}/src/backend/app.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "development"
+      }
     }
   ]
 }

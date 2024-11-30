@@ -8,8 +8,8 @@ const ListEmployees = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const data = await employeeService.getEmployees();
-        setEmployees(data);
+        const result = await employeeService.getEmployees();
+        setEmployees(result.data);
       } catch (error) {
         console.error(error);
       }

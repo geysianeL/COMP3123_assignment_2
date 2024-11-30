@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import tokenService from '../services/tokenService';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await authService.login(email, password);
       tokenService.setToken(data.token);
-      Navigate('/list-employees');
+      navigate('/list-employees');
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleCreateAccount = (e) => {
+    e.preventDefault();
+    navigate('/create-user');
   };
 
   return (
@@ -40,8 +46,16 @@ const Login = () => {
           placeholder="Enter password"
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="mt-3">
+      <Button variant="outline-primary" type="submit" className="mt-3 me-2">
         Login
+      </Button>
+      <Button
+        variant="outline-secondary"
+        type="button"
+        className="mt-3"
+        onClick={handleCreateAccount}
+      >
+        Create Account
       </Button>
     </Form>
   );
