@@ -1,19 +1,13 @@
+// src/components/ProtectedRoute.js
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import tokenService from '../services/tokenService';
+import { Navigate } from 'react-router-dom';
+import authService from '../services/authService';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        tokenService.getToken() ? (
-          <Component {...props} />
-        ) : (
-          <Navigate to="/login" />
-        )
-      }
-    />
+const ProtectedRoute = ({ element: Component, ...rest }) => {
+  return authService.isLoggedIn() ? (
+    <Component {...rest} />
+  ) : (
+    <Navigate to="/login" />
   );
 };
 

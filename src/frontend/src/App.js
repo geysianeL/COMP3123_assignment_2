@@ -6,6 +6,7 @@ import CreateUser from './pages/CreateUser';
 import ListEmployees from './pages/ListEmployees';
 import RegisterEmployee from './pages/RegisterEmployee';
 import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
 import { Container } from 'react-bootstrap';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       <Navigation />
       <Container>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create-user" element={<CreateUser />} />
           <Route

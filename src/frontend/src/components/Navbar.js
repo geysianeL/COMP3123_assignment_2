@@ -1,8 +1,11 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import authService from '../services/authService';
 
 const Navigation = () => {
+  const isLoggedIn = authService.isLoggedIn();
+
   return (
     <Navbar bg="secondary" variant="dark" expand="lg">
       <Navbar.Brand href="/">Employee Management</Navbar.Brand>
@@ -15,12 +18,16 @@ const Navigation = () => {
           <LinkContainer to="/create-user">
             <Nav.Link>Create User</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/list-employees">
-            <Nav.Link>List Employees</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="/register-employee">
-            <Nav.Link>Register Employee</Nav.Link>
-          </LinkContainer>
+          {isLoggedIn && (
+            <>
+              <LinkContainer to="/list-employees">
+                <Nav.Link>List Employees</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/register-employee">
+                <Nav.Link>Register Employee</Nav.Link>
+              </LinkContainer>
+            </>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

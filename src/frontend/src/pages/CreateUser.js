@@ -39,7 +39,7 @@ const CreateUser = () => {
           placeholder="Enter email"
         />
       </Form.Group>
-      <Form.Group controlId="formPassword" className="mb-3">
+      <Form.Group controlId="formPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
@@ -49,7 +49,7 @@ const CreateUser = () => {
           placeholder="Enter password"
         />
       </Form.Group>
-      <Button variant="outline-primary" type="submit">
+      <Button variant="outline-primary" type="submit" className="mt-3">
         Create User
       </Button>
     </Form>

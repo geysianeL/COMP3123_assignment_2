@@ -1,4 +1,5 @@
 import axios from 'axios';
+import tokenService from './tokenService';
 
 const API_URL = 'http://localhost:3000';
 
@@ -16,7 +17,22 @@ const createUser = async (email, username, password) => {
   return response.data;
 };
 
+const isLoggedIn = async () => {
+  try {
+    let token = tokenService.getToken();
+    const response = await axios.get(`${API_URL}/employees`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.status === 200;
+  } catch {
+    return false;
+  }
+};
+
 export default {
   login,
   createUser,
+  isLoggedIn,
 };

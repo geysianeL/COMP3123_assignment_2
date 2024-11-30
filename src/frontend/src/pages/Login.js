@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="m-1">
       <h1>Login</h1>
       <Form.Group controlId="formEmail">
         <Form.Label>Email</Form.Label>
@@ -40,7 +40,7 @@ const Login = () => {
           placeholder="Enter password"
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className="mt-3">
         Login
       </Button>
     </Form>
