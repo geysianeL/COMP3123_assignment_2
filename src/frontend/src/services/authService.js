@@ -20,7 +20,7 @@ const createUser = async (email, username, password) => {
 const isLoggedIn = async () => {
   try {
     let token = tokenService.getToken();
-    const response = await axios.get(`${API_URL}/employees`, {
+    const response = await axios.get(`${API_URL}/protected`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,8 +31,23 @@ const isLoggedIn = async () => {
   }
 };
 
+const getUserInfo = async () => {
+  try {
+    let token = tokenService.getToken();
+    const response = await axios.get(`${API_URL}/userinfo`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch {
+    return false;
+  }
+};
+
 export default {
   login,
   createUser,
   isLoggedIn,
+  getUserInfo,
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import authService from '../services/authService';
+import tokenService from '../services/tokenService';
 
 const Navigation = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,7 +13,7 @@ const Navigation = () => {
       const loggedIn = await authService.isLoggedIn();
       setIsLoggedIn(loggedIn);
       if (loggedIn) {
-        const user = await authService.getUser();
+        const user = await authService.getUserInfo();
         setUsername(user.username);
       }
     };
@@ -20,8 +21,8 @@ const Navigation = () => {
     checkLoginStatus();
   }, []);
 
-  const handleLogout = async () => {
-    await authService.removeToken();
+  const handleLogout = () => {
+    tokenService.removeToken();
     window.location.href = '/login';
   };
 
