@@ -1,4 +1,3 @@
-@import './fonts.scss';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
@@ -10,10 +9,6 @@ $warning: #1b1b1b;
 $danger: #e91b2c;
 $light: #fbd9e4;
 $dark: #2f0513;
-
-$btn-primary-color: $white;
-$font-family-base: 'Roboto', sans-serif;
-$headings-font-family: 'Roboto', sans-serif;
 
 $theme-colors: (
   "primary": $primary,

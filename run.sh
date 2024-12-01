@@ -1,1 +1,5 @@
-docker-compose -f "./src/docker-compose.yml" up --build -d
+#!/bin/bash
+
+composeFile="./src/docker-compose.yml"
+
+docker compose -f $composeFile up --build -d

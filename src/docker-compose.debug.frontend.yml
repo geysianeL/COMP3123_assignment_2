@@ -17,6 +17,9 @@ services:
     networks:
       - backend-network
 
+  frontend:
+    entrypoint: /bin/true
+
   mongo:
     image: mongo:latest
     container_name: mongo_db
