@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"geysianel\",\r\n    \"email\": \"geysianelopes@hotmail.com\",\r\n    \"password\": \"p4WZwbT6KzjasevS9rDmuF\"\r\n}",
+							"raw": "{\r\n    \"username\": \"user2\",\r\n    \"email\": \"user2@email.com\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -57,7 +57,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"geysianelopes@hotmail.com\",\r\n    \"password\": \"p4WZwbT6KzjasevS9rDmuF\"\r\n}",
+							"raw": "{\r\n    \"email\": \"user2@email.com\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,6 +71,118 @@
 							],
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "protected",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/protected",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"protected"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/userinfo",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"userinfo"
 							]
 						}
 					},
@@ -130,7 +242,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"lastEmployeeId\", jsonData.message.last()._id);"
+									"pm.collectionVariables.set(\"lastEmployeeId\", jsonData.data.last()._id);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -181,6 +293,15 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"first_name\": \"gey\",\r\n \"last_name\": \"lopes\",\r\n \"email\": \"geylo@hotmail.com\",\r\n \"position\": \"design\",\r\n \"salary\": 100000,\r\n \"date_of_joining\": \"2024-01-01\",\r\n \"department\": \"IT\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{server}}/employees/:eid",
 							"host": [
@@ -193,7 +314,7 @@
 							"variable": [
 								{
 									"key": "eid",
-									"value": ""
+									"value": "{{lastEmployeeId}}"
 								}
 							]
 						}

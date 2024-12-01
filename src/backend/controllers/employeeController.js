@@ -14,7 +14,16 @@ exports.getEmployee = async (req, res) => {
 // get list of employee registered from route post /api/v1/emp/employees
 exports.listEmployee = async (req, res) => {
   try {
-    const employees = await Employee.find({});
+    const { name } = req.query;
+    const query = name
+      ? {
+          $or: [
+            { first_name: new RegExp(name, 'i') },
+            { last_name: new RegExp(name, 'i') },
+          ],
+        }
+      : {};
+    const employees = await Employee.find(query);
     res.status(200).send({ status: true, data: employees });
   } catch (err) {
     res.status(500).send({ status: false, message: err.message });
