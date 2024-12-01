@@ -41,5 +41,4 @@ page will open in [http://localhost:3002](http://localhost:3002)
 - Register Employee
   ![Register Employee](./screenshots/register_employee.jpeg)
 
-- Register Employee
   ![List Employee](./screenshots/list_employees.jpeg)
