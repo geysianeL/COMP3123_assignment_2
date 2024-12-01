@@ -67,7 +67,7 @@ exports.userInfo = async (req, res) => {
     if (!user) {
       return res.status(404).json({ status: false, message: 'User not found' });
     }
-    res.status(200).json({ status: true, user });
+    res.status(200).json({ status: true, data: user });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
   }

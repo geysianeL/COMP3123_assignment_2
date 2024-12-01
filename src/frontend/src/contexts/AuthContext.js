@@ -12,8 +12,8 @@ export const AuthProvider = ({ children }) => {
       const loggedIn = await authService.isLoggedIn();
       setIsLoggedIn(loggedIn);
       if (loggedIn) {
-        const user = await authService.getUserInfo();
-        setUsername(user.username);
+        const result = await authService.getUserInfo();
+        setUsername(result.data.username);
       }
     };
 

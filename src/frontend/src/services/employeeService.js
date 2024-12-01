@@ -22,14 +22,26 @@ const getEmployee = async (employeeId) => {
   return response.data;
 };
 
-const registerEmployee = async (name, email, position) => {
+const registerEmployee = async (
+  firstName,
+  lastName,
+  email,
+  position,
+  salary,
+  dateOfJoin,
+  department,
+) => {
   let token = tokenService.getToken();
   const response = await axios.post(
     `${API_URL}/employees`,
     {
-      name,
-      email,
-      position,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      position: position,
+      salary: salary,
+      date_of_joining: dateOfJoin,
+      department: department,
     },
     {
       headers: {

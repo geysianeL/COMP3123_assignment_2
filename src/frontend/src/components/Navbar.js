@@ -9,7 +9,7 @@ const Navigation = () => {
     useContext(AuthContext);
 
   const handleLogout = async () => {
-    await tokenService.removeToken();
+    tokenService.removeToken();
     setIsLoggedIn(false);
     setUsername('');
     window.location.href = '/login';
@@ -29,10 +29,12 @@ const Navigation = () => {
         </Nav>
         <Nav className="ml-auto">
           {isLoggedIn ? (
-            <>
-              <Nav.Link>{username}</Nav.Link>
-              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-            </>
+            <div className="text-right">
+              <div>Hi {username}!</div>
+              <Nav.Link onClick={handleLogout} size="sm">
+                Logout
+              </Nav.Link>
+            </div>
           ) : (
             <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>

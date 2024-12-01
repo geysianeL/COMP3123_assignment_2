@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import employeeService from '../services/employeeService';
 
 const RegisterEmployee = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [position, setPosition] = useState('');
+  const [salary, setSalary] = useState('');
+  const [dateOfJoin, setDateOfJoin] = useState('');
+  const [department, setDepartment] = useState('');
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await employeeService.registerEmployee(
-        name,
+      await employeeService.registerEmployee(
+        firstName,
+        lastName,
         email,
         position,
+        salary,
+        dateOfJoin,
+        department,
       );
       navigate('/list-employees');
     } catch (error) {
@@ -22,16 +31,30 @@ const RegisterEmployee = () => {
     }
   };
 
+  const handleback = async (e) => {
+    e.preventDefault();
+    navigate('/list-employees');
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <h3>Register Employee</h3>
-      <Form.Group controlId="formName">
-        <Form.Label>Name</Form.Label>
+      <Form.Group controlId="formFirstName">
+        <Form.Label>First Name</Form.Label>
         <Form.Control
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="Enter first name"
+        />
+      </Form.Group>
+      <Form.Group controlId="formLastName">
+        <Form.Label>Last Name</Form.Label>
+        <Form.Control
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          placeholder="Enter last name"
         />
       </Form.Group>
       <Form.Group controlId="formEmail">
@@ -52,8 +75,42 @@ const RegisterEmployee = () => {
           placeholder="Enter position"
         />
       </Form.Group>
-      <Button variant="outline-primary" type="submit" className="mt-3">
+      <Form.Group controlId="formSalary">
+        <Form.Label>Salary</Form.Label>
+        <Form.Control
+          type="number"
+          value={salary}
+          onChange={(e) => setSalary(e.target.value)}
+          placeholder="Enter salary"
+        />
+      </Form.Group>
+      <Form.Group controlId="formDateOfJoin">
+        <Form.Label>Date of Joining</Form.Label>
+        <Form.Control
+          type="date"
+          value={dateOfJoin}
+          onChange={(e) => setDateOfJoin(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId="formDepartment">
+        <Form.Label>Department</Form.Label>
+        <Form.Control
+          type="text"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+          placeholder="Enter department"
+        />
+      </Form.Group>
+      <Button variant="outline-primary" type="submit" className="mt-3 me-3">
         Register Employee
+      </Button>
+      <Button
+        variant="outline-secondary"
+        type="button"
+        className="mt-3"
+        onClick={handleback}
+      >
+        Back
       </Button>
     </Form>
   );
