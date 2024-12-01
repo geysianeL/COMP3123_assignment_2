@@ -27,25 +27,25 @@ const Home = () => {
                   <FontAwesomeIcon
                     icon={faUserPlus}
                     style={{ color: 'green' }}
-                  />{' '}
+                  />
                   Register new employees
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <FontAwesomeIcon icon={faFileAlt} style={{ color: 'blue' }} />{' '}
+                  <FontAwesomeIcon icon={faFileAlt} style={{ color: 'blue' }} />
                   Manage employee records
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <FontAwesomeIcon
                     icon={faMoneyBillWave}
                     style={{ color: 'gold' }}
-                  />{' '}
+                  />
                   Track salaries and benefits
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <FontAwesomeIcon
                     icon={faUserShield}
                     style={{ color: 'purple' }}
-                  />{' '}
+                  />
                   Create and manage user accounts
                 </ListGroup.Item>
               </ListGroup>

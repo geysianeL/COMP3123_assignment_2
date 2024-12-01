@@ -1,6 +1,6 @@
+import './assets/scss/theme.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/scss/theme.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './contexts/AuthContext';
