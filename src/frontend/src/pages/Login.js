@@ -4,10 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import tokenService from '../services/tokenService';
 import { AuthContext } from '../contexts/AuthContext';
+import AlertModal from '../components/AlertModal';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const { setIsLoggedIn, setUsername } = useContext(AuthContext);
 
@@ -21,9 +24,12 @@ const Login = () => {
       setUsername(user.username);
       navigate('/list-employees');
     } catch (error) {
-      console.error(error);
+      setErrorMessage(error.message);
+      setShowModal(true);
     }
   };
+
+  const handleClose = () => setShowModal(false);
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
@@ -31,38 +37,45 @@ const Login = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="m-1">
-      <h1>Login</h1>
-      <Form.Group controlId="formEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter email"
-        />
-      </Form.Group>
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter password"
-        />
-      </Form.Group>
-      <Button variant="outline-primary" type="submit" className="mt-3 me-2">
-        Login
-      </Button>
-      <Button
-        variant="outline-secondary"
-        type="button"
-        className="mt-3"
-        onClick={handleCreateAccount}
-      >
-        Create Account
-      </Button>
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit} className="m-1">
+        <h1>Login</h1>
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email"
+          />
+        </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter password"
+          />
+        </Form.Group>
+        <Button variant="outline-primary" type="submit" className="mt-3 me-2">
+          Login
+        </Button>
+        <Button
+          variant="outline-secondary"
+          type="button"
+          className="mt-3"
+          onClick={handleCreateAccount}
+        >
+          Create Account
+        </Button>
+      </Form>
+      <AlertModal
+        show={showModal}
+        handleClose={handleClose}
+        errorMessage={errorMessage}
+      />
+    </>
   );
 };
 
