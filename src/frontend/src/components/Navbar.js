@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import authService from '../services/authService';
+import { AuthContext } from '../contexts/AuthContext';
 import tokenService from '../services/tokenService';
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const { isLoggedIn, username, setIsLoggedIn, setUsername } =
+    useContext(AuthContext);
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const loggedIn = await authService.isLoggedIn();
-      setIsLoggedIn(loggedIn);
-      if (loggedIn) {
-        const user = await authService.getUserInfo();
-        setUsername(user.username);
-      }
-    };
-
-    checkLoginStatus();
-  }, []);
-
-  const handleLogout = () => {
-    tokenService.removeToken();
+  const handleLogout = async () => {
+    await tokenService.removeToken();
+    setIsLoggedIn(false);
+    setUsername('');
     window.location.href = '/login';
   };
 

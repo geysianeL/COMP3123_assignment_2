@@ -22,7 +22,7 @@ const ListEmployees = () => {
     <Container>
       <Row>
         <Col>
-          <h1>List of Employees</h1>
+          <h3>List of Employees</h3>
           <div className="d-flex justify-content-end mb-3">
             {' '}
             <Button variant="outline-info" size="sm" href="/register-employee">

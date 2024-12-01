@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import tokenService from '../services/tokenService';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { setIsLoggedIn, setUsername } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await authService.login(email, password);
       tokenService.setToken(data.token);
+      const user = await authService.getUserInfo();
+      setIsLoggedIn(true);
+      setUsername(user.username);
       navigate('/list-employees');
     } catch (error) {
       console.error(error);
