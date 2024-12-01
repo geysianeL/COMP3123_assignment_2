@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser,
+  faEnvelope,
+  faBriefcase,
+  faDollarSign,
+  faCalendarAlt,
+  faBuilding,
+} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import employeeService from '../services/employeeService';
 import AlertModal from '../components/AlertModal';
@@ -13,7 +22,8 @@ const RegisterEmployee = () => {
   const [dateOfJoin, setDateOfJoin] = useState('');
   const [department, setDepartment] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,9 +38,14 @@ const RegisterEmployee = () => {
         dateOfJoin,
         department,
       );
+      setMessage('Employee registered successfully!');
+      setIsSuccess(true);
+      setShowModal(true);
       navigate('/list-employees');
     } catch (error) {
-      setErrorMessage(error.message);
+      console.error(error);
+      setMessage(error.response.data.message.map((p) => p.msg).join('<br />'));
+      setIsSuccess(false);
       setShowModal(true);
     }
   };
@@ -47,7 +62,9 @@ const RegisterEmployee = () => {
       <Form onSubmit={handleSubmit}>
         <h3>Register Employee</h3>
         <Form.Group controlId="formFirstName">
-          <Form.Label>First Name</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faUser} /> First Name
+          </Form.Label>
           <Form.Control
             type="text"
             value={firstName}
@@ -56,7 +73,9 @@ const RegisterEmployee = () => {
           />
         </Form.Group>
         <Form.Group controlId="formLastName">
-          <Form.Label>Last Name</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faUser} /> Last Name
+          </Form.Label>
           <Form.Control
             type="text"
             value={lastName}
@@ -65,7 +84,9 @@ const RegisterEmployee = () => {
           />
         </Form.Group>
         <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faEnvelope} /> Email
+          </Form.Label>
           <Form.Control
             type="email"
             value={email}
@@ -74,7 +95,9 @@ const RegisterEmployee = () => {
           />
         </Form.Group>
         <Form.Group controlId="formPosition">
-          <Form.Label>Position</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faBriefcase} /> Position
+          </Form.Label>
           <Form.Control
             type="text"
             value={position}
@@ -83,7 +106,9 @@ const RegisterEmployee = () => {
           />
         </Form.Group>
         <Form.Group controlId="formSalary">
-          <Form.Label>Salary</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faDollarSign} /> Salary
+          </Form.Label>
           <Form.Control
             type="number"
             value={salary}
@@ -92,7 +117,9 @@ const RegisterEmployee = () => {
           />
         </Form.Group>
         <Form.Group controlId="formDateOfJoin">
-          <Form.Label>Date of Joining</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faCalendarAlt} /> Date of Joining
+          </Form.Label>
           <Form.Control
             type="date"
             value={dateOfJoin}
@@ -100,7 +127,9 @@ const RegisterEmployee = () => {
           />
         </Form.Group>
         <Form.Group controlId="formDepartment">
-          <Form.Label>Department</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faBuilding} /> Department
+          </Form.Label>
           <Form.Control
             type="text"
             value={department}
@@ -123,7 +152,8 @@ const RegisterEmployee = () => {
       <AlertModal
         show={showModal}
         handleClose={handleClose}
-        errorMessage={errorMessage}
+        message={message}
+        isSuccess={isSuccess}
       />
     </>
   );

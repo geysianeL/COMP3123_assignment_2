@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import tokenService from '../services/tokenService';
@@ -10,7 +12,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
   const { setIsLoggedIn, setUsername } = useContext(AuthContext);
 
@@ -24,7 +27,9 @@ const Login = () => {
       setUsername(user.username);
       navigate('/list-employees');
     } catch (error) {
-      setErrorMessage(error.message);
+      console.error(error);
+      setMessage(error.response.data.message);
+      setIsSuccess(false);
       setShowModal(true);
     }
   };
@@ -41,7 +46,9 @@ const Login = () => {
       <Form onSubmit={handleSubmit} className="m-1">
         <h1>Login</h1>
         <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faEnvelope} /> Email
+          </Form.Label>
           <Form.Control
             type="email"
             value={email}
@@ -50,7 +57,9 @@ const Login = () => {
           />
         </Form.Group>
         <Form.Group controlId="formPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faLock} /> Password
+          </Form.Label>
           <Form.Control
             type="password"
             value={password}
@@ -73,7 +82,8 @@ const Login = () => {
       <AlertModal
         show={showModal}
         handleClose={handleClose}
-        errorMessage={errorMessage}
+        message={message}
+        isSuccess={isSuccess}
       />
     </>
   );

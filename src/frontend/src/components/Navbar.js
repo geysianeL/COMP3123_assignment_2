@@ -1,5 +1,11 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSignOutAlt,
+  faSignInAlt,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 import { LinkContainer } from 'react-router-bootstrap';
 import { AuthContext } from '../contexts/AuthContext';
 import tokenService from '../services/tokenService';
@@ -23,7 +29,9 @@ const Navigation = () => {
         <Nav className="mr-auto">
           {isLoggedIn && (
             <LinkContainer to="/list-employees">
-              <Nav.Link>List Employees</Nav.Link>
+              <Nav.Link>
+                <FontAwesomeIcon icon={faUsers} /> List Employees
+              </Nav.Link>
             </LinkContainer>
           )}
         </Nav>
@@ -32,12 +40,14 @@ const Navigation = () => {
             <div className="text-right">
               <div>Hi {username}!</div>
               <Nav.Link onClick={handleLogout} size="sm">
-                Logout
+                <FontAwesomeIcon icon={faSignOutAlt} /> Logout
               </Nav.Link>
             </div>
           ) : (
             <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
+              <Nav.Link>
+                <FontAwesomeIcon icon={faSignInAlt} /> Login
+              </Nav.Link>
             </LinkContainer>
           )}
         </Nav>

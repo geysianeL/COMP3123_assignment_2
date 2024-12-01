@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser,
+  faUserPlus,
+  faEnvelope,
+  faBriefcase,
+  faDollarSign,
+  faCalendarAlt,
+  faBuilding,
+} from '@fortawesome/free-solid-svg-icons';
 import { format } from 'date-fns';
 import employeeService from '../services/employeeService';
 
@@ -26,7 +36,7 @@ const ListEmployees = () => {
           <h3>List of Employees</h3>
           <div className="d-flex justify-content-end mb-3">
             <Button variant="outline-info" size="sm" href="/register-employee">
-              Register Employee
+              <FontAwesomeIcon icon={faUserPlus} /> Register Employee
             </Button>
           </div>
           {employees.length === 0 ? (
@@ -35,12 +45,24 @@ const ListEmployees = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Position</th>
-                  <th>Salary</th>
-                  <th>Date of Joining</th>
-                  <th>Department</th>
+                  <th>
+                    <FontAwesomeIcon icon={faUser} /> Name
+                  </th>
+                  <th>
+                    <FontAwesomeIcon icon={faEnvelope} /> Email
+                  </th>
+                  <th>
+                    <FontAwesomeIcon icon={faBriefcase} /> Position
+                  </th>
+                  <th>
+                    <FontAwesomeIcon icon={faDollarSign} /> Salary
+                  </th>
+                  <th>
+                    <FontAwesomeIcon icon={faCalendarAlt} /> Date of Joining
+                  </th>
+                  <th>
+                    <FontAwesomeIcon icon={faBuilding} /> Department
+                  </th>
                 </tr>
               </thead>
               <tbody>

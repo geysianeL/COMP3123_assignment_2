@@ -9,6 +9,8 @@ services:
 
   mongo:
     container_name: mongo_dev_db
+    volumes:
+      - mongo-dev-data:/data/db
 
   mongo-express:
     image: mongo-express:latest
@@ -23,7 +25,7 @@ services:
       - backend-network
 
 volumes:
-  mongo-data:
+  mongo-dev-data:
 
 
 networks:
